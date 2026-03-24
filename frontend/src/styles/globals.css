@@ -1,0 +1,110 @@
+/* ── Google Fonts import ─────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lato:wght@300;400;700&family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+@import "tailwindcss";
+
+/* ── Bloom Design System ─────────────────────────────────── */
+
+@theme {
+  --color-latte:      #C4956A;
+  --color-sage:       #8BAF7A;
+  --color-mauve:      #B89AB8;
+  --color-terra:      #D4876A;
+  --color-mist:       #9AB0C4;
+  --color-parchment:  #F5F0E8;
+  --color-ink:        #3D2F24;
+  --color-cream:      #FAF7F2;
+  --color-dusk:       #2A2233;
+  --color-thunder:    #4A3F5C;
+  --color-snowlight:  #EEF4FA;
+  --color-gold:       #E8C84A;
+
+  --font-display: 'Nunito', 'Fredoka One', sans-serif;
+  --font-body:    'Lato', 'Inter', sans-serif;
+  --font-journal: 'Caveat', cursive;
+  --font-serif:   'Playfair Display', serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+:root {
+  /* Raw colour tokens for canvas / JS usage */
+  --latte:      #C4956A;
+  --sage:       #8BAF7A;
+  --mauve:      #B89AB8;
+  --terra:      #D4876A;
+  --mist:       #9AB0C4;
+  --parchment:  #F5F0E8;
+  --ink:        #3D2F24;
+  --cream:      #FAF7F2;
+  --dusk:       #2A2233;
+  --thunder:    #4A3F5C;
+  --snowlight:  #EEF4FA;
+  --gold:       #E8C84A;
+
+  --font-journal: 'Caveat', cursive;
+  --font-serif:   'Playfair Display', serif;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 17px;               /* ← bumped from 16 → 17 to enlarge everything */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--parchment);
+    min-height: 100dvh;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  /* Remove all sharp edges */
+  button, input, textarea, select {
+    border-radius: var(--radius-md);
+  }
+
+  img, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--latte);
+    border-radius: var(--radius-full);
+  }
+}
+

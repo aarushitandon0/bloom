@@ -1,0 +1,30 @@
+{
+  "name": "bloom-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "echo Use 'npm run dev:frontend' and 'npm run dev:backend' in separate terminals",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm install && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "install:all": "cd frontend && npm install && cd ../backend && npm install",
+    "typecheck": "cd frontend && npx tsc --noEmit && cd ../backend && npx tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.100.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.13.14",
+    "tsx": "^4.19.3",
+    "typescript": "~5.9.3"
+  }
+}

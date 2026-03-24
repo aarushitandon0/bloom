@@ -1,0 +1,140 @@
+/* ── Bloom animations ────────────────────────────────────── */
+
+/* Rain particles */
+@keyframes rain-fall {
+  from { transform: translateY(-20px) translateX(0); opacity: 0.7; }
+  to   { transform: translateY(100vh) translateX(-30px); opacity: 0; }
+}
+
+/* Firefly glow */
+@keyframes firefly-drift {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  20%  { opacity: 0.9; }
+  50%  { transform: translate(12px, -8px); opacity: 0.6; }
+  80%  { opacity: 0.9; }
+  100% { transform: translate(-6px, 4px); opacity: 0; }
+}
+
+/* Shimmer effect for golden hour */
+@keyframes shimmer {
+  0%   { opacity: 0.3; transform: translateY(0); }
+  50%  { opacity: 0.7; transform: translateY(-4px); }
+  100% { opacity: 0.3; transform: translateY(0); }
+}
+
+/* Falling leaves */
+@keyframes leaf-fall {
+  0%   { transform: translate(0, -10px) rotate(0deg); opacity: 0.8; }
+  50%  { transform: translate(20px, 50vh) rotate(180deg); opacity: 0.6; }
+  100% { transform: translate(-10px, 100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Snow fall */
+@keyframes snow-fall {
+  0%   { transform: translateY(-10px) translateX(0); opacity: 0.8; }
+  50%  { transform: translateY(50vh) translateX(15px); opacity: 0.6; }
+  100% { transform: translateY(100vh) translateX(-5px); opacity: 0; }
+}
+
+/* Tile pop-in */
+@keyframes tile-pop {
+  0%   { transform: scale(0) translateY(10px); opacity: 0; }
+  60%  { transform: scale(1.15) translateY(-2px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Watering can pour */
+@keyframes pour-water {
+  0%   { transform: rotate(0deg); }
+  30%  { transform: rotate(-35deg); }
+  70%  { transform: rotate(-35deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Water droplets */
+@keyframes water-drop {
+  0%   { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(20px) scale(0.3); opacity: 0; }
+}
+
+/* Gentle float (for FAB idle) */
+@keyframes gentle-float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+/* Cottage glow pulse */
+@keyframes cottage-glow {
+  0%   { box-shadow: 0 0 8px rgba(232, 200, 74, 0.3); }
+  50%  { box-shadow: 0 0 20px rgba(232, 200, 74, 0.6); }
+  100% { box-shadow: 0 0 8px rgba(232, 200, 74, 0.3); }
+}
+
+/* Rainbow arc fade */
+@keyframes rainbow-arc {
+  0%   { opacity: 0; transform: scale(0.8); }
+  20%  { opacity: 0.7; transform: scale(1); }
+  80%  { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+
+/* Shooting star */
+@keyframes shooting-star {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(200px, 80px) scale(0); opacity: 0; }
+}
+
+/* Toast slide */
+@keyframes toast-in {
+  from { transform: translateY(100%) scale(0.95); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes toast-out {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to   { transform: translateY(100%) scale(0.95); opacity: 0; }
+}
+
+/* Unlock sparkle */
+@keyframes sparkle {
+  0%   { transform: scale(0) rotate(0deg); opacity: 0; }
+  50%  { transform: scale(1.2) rotate(180deg); opacity: 1; }
+  100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+/* Breathing glow ring (selected mood) */
+@keyframes glow-ring {
+  0%   { box-shadow: 0 0 0 3px currentColor; }
+  50%  { box-shadow: 0 0 12px 4px currentColor; }
+  100% { box-shadow: 0 0 0 3px currentColor; }
+}
+
+/* Petal fall (spring) */
+@keyframes petal-fall {
+  0%   { transform: translate(0, -10px) rotate(0deg) scale(0.8); opacity: 0.7; }
+  50%  { transform: translate(30px, 50vh) rotate(180deg) scale(1); opacity: 0.5; }
+  100% { transform: translate(15px, 100vh) rotate(360deg) scale(0.6); opacity: 0; }
+}
+
+/* Utility classes */
+.animate-tile-pop {
+  animation: tile-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-gentle-float {
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+.animate-glow-ring {
+  animation: glow-ring 2s ease-in-out infinite;
+}
+
+.animate-toast-in {
+  animation: toast-in 0.3s ease-out forwards;
+}
+
+.animate-toast-out {
+  animation: toast-out 0.3s ease-in forwards;
+}

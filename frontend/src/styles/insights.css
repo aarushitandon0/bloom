@@ -1,0 +1,615 @@
+/* ── Insights + Calendar unified page ─────────────────────── */
+
+/* ── Page container ─────────────────────── */
+.insights-page {
+  background: linear-gradient(
+    170deg,
+    var(--parchment) 0%,
+    color-mix(in srgb, var(--cream) 60%, var(--parchment)) 50%,
+    color-mix(in srgb, var(--latte) 8%, var(--parchment)) 100%
+  );
+  min-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* ── Header ──────────────────────────────── */
+.insights-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px 14px;
+  background: color-mix(in srgb, var(--parchment) 85%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid color-mix(in srgb, var(--latte) 12%, transparent);
+}
+
+.insights-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.insights-back-btn:hover {
+  background: var(--cream);
+}
+
+.insights-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 0;
+}
+.insights-subtitle {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--ink) 40%, transparent);
+  margin: 2px 0 0;
+}
+
+/* ── Content scroll area ─────────────────── */
+.insights-content {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+/* ── Section headings ────────────────────── */
+.insights-section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  letter-spacing: 0.03em;
+  margin: 0 0 12px 2px;
+}
+.insights-heatmap-section .insights-section-heading {
+  margin-bottom: 2px;
+}
+.insights-section-sub {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--ink) 35%, transparent);
+  margin: 0 0 10px 2px;
+}
+
+/* ═══════════════════════════════════════════
+   Mood Heatmap Section
+   ═══════════════════════════════════════════ */
+.insights-heatmap-section {
+  background: var(--cream);
+  border-radius: 20px;
+  padding: 16px;
+  border: 1px solid rgba(196, 149, 106, 0.08);
+  box-shadow: 0 2px 12px rgba(61, 47, 36, 0.04);
+}
+.heatmap-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.heatmap-scroll::-webkit-scrollbar { display: none; }
+.heatmap-grid {
+  display: grid;
+  grid-template-rows: repeat(7, 10px);
+  grid-auto-flow: column;
+  grid-auto-columns: 10px;
+  gap: 3px;
+  width: max-content;
+  min-width: 100%;
+}
+.heatmap-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  transition: transform 0.15s;
+  cursor: default;
+}
+.heatmap-cell:hover { transform: scale(1.35); }
+
+/* ═══════════════════════════════════════════
+   Calendar Section
+   ═══════════════════════════════════════════ */
+
+.insights-calendar-section {
+  background: var(--cream);
+  border-radius: 20px;
+  padding: 18px 14px 14px;
+  border: 1px solid color-mix(in srgb, var(--latte) 12%, transparent);
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--ink) 4%, transparent);
+  margin-bottom: 20px;
+}
+
+/* Month nav */
+.cal-month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cal-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cal-nav-btn:hover {
+  background: color-mix(in srgb, var(--latte) 15%, transparent);
+  color: var(--ink);
+}
+.cal-month-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* Weekday row */
+.cal-weekday-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+.cal-weekday {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--ink) 30%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 0;
+}
+
+/* Day grid */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+.cal-cell-empty {
+  aspect-ratio: 1;
+}
+
+.cal-cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 2px;
+  padding: 2px;
+}
+.cal-cell:hover {
+  background: color-mix(in srgb, var(--latte) 12%, transparent);
+}
+
+.cal-cell--selected {
+  background: color-mix(in srgb, var(--latte) 20%, transparent);
+  border-color: var(--latte);
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--latte) 25%, transparent);
+}
+.cal-cell--today .cal-cell-num {
+  font-weight: 700;
+}
+.cal-cell--today::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--terra);
+}
+
+/* The mood colour dot */
+.cal-cell-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cal-cell-num {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  line-height: 1;
+}
+.cal-cell-num--has-mood {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cal-cell-count {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  color: color-mix(in srgb, var(--ink) 35%, transparent);
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════
+   Day Drill-down
+   ═══════════════════════════════════════════ */
+
+.day-drilldown {
+  background: var(--cream);
+  border-radius: 20px;
+  padding: 18px 16px;
+  border: 1px solid color-mix(in srgb, var(--latte) 12%, transparent);
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--ink) 4%, transparent);
+  margin-bottom: 20px;
+}
+
+.day-drilldown-date {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+
+/* Empty state */
+.day-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 0;
+}
+.day-empty-icon {
+  color: color-mix(in srgb, var(--ink) 20%, transparent);
+}
+.day-empty p {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--ink) 35%, transparent);
+  text-align: center;
+  margin: 0;
+}
+
+/* Mood summary strip */
+.day-mood-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--latte) 10%, transparent);
+}
+.day-dominant {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.day-dominant-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.day-dominant-label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-transform: capitalize;
+}
+.day-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--ink) 40%, transparent);
+}
+.day-meta-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+/* Day breakdown bars */
+.day-breakdown {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.day-breakdown-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.day-breakdown-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: color-mix(in srgb, var(--ink) 50%, transparent);
+  width: 52px;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+.day-breakdown-track {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--latte) 15%, transparent);
+  overflow: hidden;
+}
+.day-breakdown-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+/* Day entries timeline */
+.day-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.day-entry-card {
+  background: color-mix(in srgb, var(--parchment) 60%, var(--cream));
+  border-radius: 14px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--latte) 8%, transparent);
+}
+
+.day-entry-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.day-entry-pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.day-entry-mood {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-transform: capitalize;
+}
+.day-entry-intensity {
+  display: flex;
+  gap: 2px;
+  margin-left: 4px;
+}
+.day-entry-intensity-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  transition: background 0.2s;
+}
+.day-entry-intensity-dot.active {
+  /* bg set inline */
+}
+.day-entry-time {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: color-mix(in srgb, var(--ink) 35%, transparent);
+  margin-left: auto;
+}
+.day-entry-note {
+  font-family: 'Caveat', cursive;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--ink) 65%, transparent);
+  margin: 6px 0 0;
+  line-height: 1.3;
+}
+
+/* Day notes summary */
+.day-notes-summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--latte) 10%, transparent);
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  color: color-mix(in srgb, var(--ink) 40%, transparent);
+}
+
+/* ═══════════════════════════════════════════
+   Stats Section
+   ═══════════════════════════════════════════ */
+
+.insights-stats-section {
+  margin-bottom: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 10px;
+  background: var(--cream);
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--latte) 10%, transparent);
+  box-shadow: 0 1px 6px color-mix(in srgb, var(--ink) 3%, transparent);
+}
+
+.stat-card-icon {
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+
+.stat-card-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.stat-card-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--ink) 42%, transparent);
+  margin-top: 2px;
+  letter-spacing: 0.01em;
+}
+
+/* ═══════════════════════════════════════════
+   Top Mood & Breakdown
+   ═══════════════════════════════════════════ */
+
+.insights-top-mood {
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--latte) 10%, transparent);
+  box-shadow: 0 1px 6px color-mix(in srgb, var(--ink) 3%, transparent);
+  margin-bottom: 20px;
+}
+.insights-top-mood-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--ink) 42%, transparent);
+  margin: 0 0 8px;
+  letter-spacing: 0.02em;
+}
+.insights-top-mood-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.insights-top-mood-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.insights-top-mood-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.insights-top-mood-pct {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--ink) 38%, transparent);
+  margin-left: auto;
+}
+
+/* Breakdown bars */
+.insights-breakdown {
+  background: var(--cream);
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--latte) 10%, transparent);
+  box-shadow: 0 1px 6px color-mix(in srgb, var(--ink) 3%, transparent);
+  margin-bottom: 20px;
+}
+
+.breakdown-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.breakdown-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.breakdown-bar-label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--ink) 52%, transparent);
+  width: 58px;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+.breakdown-bar-track {
+  flex: 1;
+  height: 7px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--latte) 15%, transparent);
+  overflow: hidden;
+}
+.breakdown-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.breakdown-bar-count {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--ink) 35%, transparent);
+  width: 22px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   Wrapped
+   ═══════════════════════════════════════════ */
+
+.insights-wrapped {
+  background: linear-gradient(
+    135deg,
+    var(--cream),
+    color-mix(in srgb, var(--sage) 6%, var(--cream))
+  );
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--sage) 12%, transparent);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--sage) 8%, transparent);
+  margin-bottom: 20px;
+}
+.insights-wrapped-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  color: color-mix(in srgb, var(--ink) 45%, transparent);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+}
+.insights-wrapped-text {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: color-mix(in srgb, var(--ink) 72%, transparent);
+  line-height: 1.6;
+  margin: 0;
+}
