@@ -24,7 +24,7 @@ interface MoodState {
   deleteEntry: (entryId: string) => Promise<void>;
 }
 
-export const useMoodStore = create<MoodState>((set, get) => ({
+export const useMoodStore = create<MoodState>((set, _get) => ({
   entries: [],
   isLoading: false,
 

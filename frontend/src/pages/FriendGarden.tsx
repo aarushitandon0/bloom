@@ -9,7 +9,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useWorldStore, KIND_PRESETS } from '@/stores/worldStore';
 import { MOOD_OPTIONS } from '@/types/mood';
-import type { ViewDirection, Season, DayPhase } from '@/types/garden';
+import type { ViewDirection, Season } from '@/types/garden';
 import {
   drawSkyGradient, createWeatherState, renderWeather, drawCelestials,
 } from '@/lib/canvas/weather';

@@ -143,7 +143,7 @@ interface WorldState {
   sendKindNote: (gardenId: string, message: string) => void;
 }
 
-export const useWorldStore = create<WorldState>((set, get) => ({
+export const useWorldStore = create<WorldState>((set, _get) => ({
   gardens: [],
   selectedGardenId: null,
   isLoading: false,

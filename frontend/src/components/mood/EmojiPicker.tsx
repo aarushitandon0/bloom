@@ -13,7 +13,6 @@ interface EmojiPickerProps {
 /** Hand-drawn style SVG icon per mood (no emoji) */
 function MoodIcon({ mood, size = 32 }: { mood: MoodType; size?: number }) {
   const s = size;
-  const hs = s / 2;
 
   switch (mood) {
     case 'happy':
