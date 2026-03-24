@@ -1,6 +1,17 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+{{
+
+  "$schema": "https://openapi.vercel.sh/vercel.json",  "$schema": "https://openapi.vercel.sh/vercel.json",
+
+  "framework": "vite",  "framework": "vite",
+
+  "rewrites": [  "buildCommand": "vite build",
+
+    { "source": "/((?!api/).*)", "destination": "/index.html" }  "outputDirectory": "dist",
+
+  ]  "installCommand": "npm install",
+
+}  "rewrites": [
+
     { "source": "/api/(.*)", "destination": "/api" },
     { "source": "/health", "destination": "/api" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
